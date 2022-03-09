@@ -1,5 +1,7 @@
-﻿using EntityFrameworkSample.Services;
+﻿using EntityFrameworkSample.Models;
+using EntityFrameworkSample.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +18,12 @@ namespace EntityFrameworkSample.Controllers
         public MatchController(IMatchService _matchService)
         {
             matchService = _matchService;
+
+            var s = DateTime.Now;
+
+            InspectionDetails inspection = new InspectionDetails();
+
+            var ss = JsonConvert.SerializeObject(inspection);
         }
 
         [HttpPost("InsertTeam")]
@@ -23,6 +31,12 @@ namespace EntityFrameworkSample.Controllers
         {
            matchService.InsertTeam(teamName);
             return Ok("Success");
+        }
+        [HttpPost("InsertInspDetails")]
+        public IActionResult InsertInspDetails(InspectionDetails inspectionDetails)
+        {
+            matchService.InsertInspDetails(inspectionDetails);
+            return Ok("Succeeded");
         }
     }
 }

@@ -15,4 +15,5 @@ namespace EntityFrameworkSample.DBModels
         public virtual Team Team1Navigation { get; set; }
         public virtual Team Team2Navigation { get; set; }
     }
+
 }
